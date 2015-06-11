@@ -1,0 +1,9 @@
+git colone xxxxxxx
+
+git add .
+
+git commit -m 'xxxx'
+
+git push origin master
+
+GIT_CURL_VERBOSE=1 git push
