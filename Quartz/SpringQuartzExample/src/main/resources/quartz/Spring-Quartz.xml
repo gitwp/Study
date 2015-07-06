@@ -1,0 +1,62 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- Task -->
+	<bean id="schedualTask1" class="com.ex1.task.SchedualTask1" />
+	<bean id="schedualTask2" class="com.ex1.task.SchedualTask2" />
+
+	<!-- Spring Quartz Job -->
+	<bean id="myjob1"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="schedualTask1" />
+		<property name="targetMethod" value="printMe" />
+	</bean>
+
+	<bean name="myjob2"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.ex1.job.Job2" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="schedualTask2" value-ref="schedualTask2" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+
+	<!-- Simple Trigger, run every 5 seconds -->
+	<!-- <bean id="simpleTrigger" -->
+	<!-- class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"> -->
+	<!-- <property name="jobDetail" ref="myjob1" /> -->
+	<!-- <property name="repeatInterval" value="5000" /> -->
+	<!-- <property name="startDelay" value="1000" /> -->
+	<!-- </bean> -->
+
+	<!-- Cron Trigger -->
+	<bean id="cronTrigger1"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="myjob1" />
+		<!-- every 5 seconds -->
+		<property name="cronExpression" value="0/3 * * * * ?" />
+		<property name="misfireInstruction" value="2" />
+	</bean>
+	<bean id="cronTrigger2"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="myjob2" />
+		<property name="cronExpression" value="0/7 * * * * ?" />
+		<property name="misfireInstruction" value="2" />
+	</bean>
+
+	<!--Scheduler contains job and trigger -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="configLocation" value="classpath:/quartz.properties" />
+
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger1" />
+				<ref bean="cronTrigger2" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
