@@ -1,0 +1,56 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>csrf-client</display-name>
+	<!-- 编码过滤器配置信息 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<!-- 过滤器设置编码文件 -->
+		<filter-class>
+			crsf.normal.web.filter.EncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encode</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>SessionFilter</filter-name>
+		<display-name>SessionFilter</display-name>
+		<description></description>
+		<filter-class>crsf.normal.web.filter.SessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<display-name>DispatcherServlet</display-name>
+		<description></description>
+		<servlet-class>crsf.normal.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/userlist</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/userAdd</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>/login.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
