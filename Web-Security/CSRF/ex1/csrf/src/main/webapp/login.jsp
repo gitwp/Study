@@ -7,7 +7,7 @@
 <title>登陆</title>
 </head>
 <body>
-<form action="/crsf/login" method="post">
+<form action="/csrf/login" method="post">
 	用户名：<input type="text" name="userNo">
 	密    码：<input type="password" name="password">
 	<input type="submit">

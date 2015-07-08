@@ -7,7 +7,7 @@
 <title>添加用户--不可被CSRF攻击</title>
 </head>
 <body>
-<form action="/crsf-defend/userAdd" method="post">
+<form action="/csrf-defend/userAdd" method="post">
 	用户名：<input type="text" name="userNo">
 	密    码：<input type="text" name="password">
 	<input type="hidden" name="csrfToken" value=<%=(String)session.getAttribute("csrfToken") %>>>

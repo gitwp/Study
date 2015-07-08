@@ -10,7 +10,7 @@
 <title>登陆</title>
 </head>
 <body>
-	<a href="/crsf-defend/userAdd">添加用户</a>
+	<a href="/csrf-defend/userAdd">添加用户</a>
 	<table>
 	<tr>
 		<th>用户名</th>

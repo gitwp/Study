@@ -7,7 +7,7 @@
 <title>添加用户--可被攻击</title>
 </head>
 <body>
-<form action="/crsf/userAdd" method="post">
+<form action="/csrf/userAdd" method="post">
 	用户名：<input type="text" name="userNo">
 	密    码：<input type="text" name="password">
 	<input type="submit">

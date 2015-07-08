@@ -25,6 +25,8 @@ public class DispatcherServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Referer:"+request.getHeader("Referer"));
+		
 		String action = request.getServletPath();
 		HttpSession session = request.getSession();
 		if(action.equals("/login")){
