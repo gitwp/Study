@@ -1,0 +1,14 @@
+回顾历史、展望未来！
+1、历史
+slf4j由log4j作者Ceki开发，逐步取代apahce commons logging。
+logback由log4j作者Ceki开发，逐步取代log4j。
+slf4j等于commons-logging，是各种日志实现的通用入口，是facade模式的体现
+
+2、组成
+logback当前分成三个模块：logback-core,logback- classic和logback-access。
+logback-core是其它两个模块的基础模块。
+logback-classic是log4j的一个 改良版本
+logback-access访问模块与Servlet容器集成提供通过Http来访问日志的功能
+
+3、未来
+http://logback.qos.ch/manual/
