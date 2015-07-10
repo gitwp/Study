@@ -1,0 +1,5 @@
+这个simple主要是通过两种方式来进行token验证（SpringMVC+AngularJS）
+1、页面加隐藏域的形式存储token值（共用方法适用了jsp页面）
+token最好是后端直接生成存储在动态页面上、不适用前台向后台发token请求的方式
+2、cookie形式存储token值
+用户禁用了cookie则失效

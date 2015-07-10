@@ -1,0 +1,1 @@
+<input id="token" type="hidden" name="token" value=<%=session.getAttribute("token")==null?"":session.getAttribute("token") %>>
