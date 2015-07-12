@@ -1,0 +1,296 @@
+DOM编程艺术
+一、DOM树
+1、DOM定义：
+①、Document Object Model文档对象模型:即用javascript对象的形式描述Html文档
+②、DOM又是一系列API的集合
+
+2、组成
+①、DOM Core
+②、DOM HTML
+③、DOM Style
+④、DOM Event
+
+3、DOM树遍历
+①、接口
+node.parentNode
+node.firstChild
+node.lastChild
+node.previousSibling
+node.nextSibling
+node.childNodes
+
+node.firstElementChild
+node.lastElementChild
+node.nextElementSibling
+node.previousElementSibling
+
+②、节点类型
+ELEMENT_NODE
+TEXT_NODE
+COMMENT_NODE
+DOCUMENT_TYPE_NODE
+
+二、节点操作
+createElement,innerText,appendChild,insertBefore,removeChild,innerHTML
+如何通过js修改Html结构！
+1、获取节点
+document.getElementById
+element.getElementsByTagName:返回值是一个动态的集合，会随着DOM结构的变化而变化
+element.getElementsByTagName(*)返回子元素
+element.getElementsByClassName 返回值是一个动态的集合，可传入以空格分隔的多个className
+element.querySelector 获取第一个符合选择器的元素
+element.querySelectorAll 返回的是一个静态的集合
+
+2、增加节点
+新建：document.createElement(tagName)
+追加：
+element.appendChild
+element.insertBefore(aChild, referenceChild)
+
+3、删除节点
+element.removeChild
+
+4、修改节点
+①、节点及其后代节点的文本内容
+element.textContent:
+element.innerText:
+
+②、节点的HTML内容
+element.innerHTML:仅限于创建新的节点、创建的内容最好是可控的，因为它不校验填入的内容，可能不安全！
+
+三、属性操作
+1.HTML attribute --> DOM property
+每个HTML元素的属性都对应了DOM对象的相应的属性，那么可以通过修改DOM对象属性的值来达到修改HTML元素属性的目的
+
+2、属性读、写
+①、DOM元素直接读写
+input.className;input.id;
+
+②、通用方法
+element.getAttribute(attributeName);可规避属性名与关键字冲突问题比如：class/for属性
+element.setAttribute(attributeName)
+
+dataset属性：data-*属性的集合
+
+四、样式操作
+
+1、获取stylesheet
+link style标签：element.sheet
+element.style
+document.styleSheets
+
+2、获取样式与选择器
+获取属性值
+element.sheet.cssRules[x].style.xxxxx;
+element.style.xxxx;
+获取选择器
+element.sheet.cssRules[x].selectorText
+
+window.getComputedStyle(element) ie9:element.currentStyle
+
+3、修改样式
+①、element.style.xxxx='xxxxxxxxxxxxxxx':给element元素添加xxxx内嵌样式
+②、element.style.cssText='xxxxxxx':一次性设置多个样式
+③、更新class属性
+
+
+五、事件
+1、事件流
+DOM事件的处理过程：capture phase(捕获)、target phase、bubble phase(冒泡)
+
+2、事件注册
+①、事件注册(一个元素上可以注册多个相同的事件、事件的执行按照注册的先后顺序依次执行)
+eventTarget.addEventListener(type,listener[,userCapture]) 
+
+②、取消事件注册
+eventTarget.removeEventListener(type,listener[,userCapture])
+element.onxxxx=null
+
+③、事件触发
+程序触发：eventTarget.dispatchEvent(type)
+
+IE6、7、8
+attachEvent("on"+type,listener)/detachEvent("on"+type,listener)
+fireEvent(e)
+no capture phase
+
+④、事件对象；
+当前事件的状态和信息
+window.event（IE）
+属性：type/target(srcElement)/currentTarget
+
+阻止事件冒泡、阻止默认事件
+方法：event.stopPropagation event.cancelBubble event.stopImmediatePropagation/event.preventDefault event.returnValue=false/
+
+3、事件类型
+①、Event
+②、UIEvent
+③、FocusEvent
+属性：relateTarget
+④、InputEvent
+⑤、KeyBoradEvent
+属性：key/code/ctrlKey/shiftKey/altKey/metaKey/repeat
+keyCode/charCode/which
+⑥、MouseEvent
+属性：
+clientX/clientY/screenX/screenY
+ctrlKey/shiftKey/altKey/metaKey
+button(0,1,2)
+⑦、WheelEvent
+属性：deltaMode/deltaX/deltaY/deltaZ
+
+4、事件代理
+将事件注册到元素的父节点上；
+需要管理的handler更少、内存分配更少、增删节点可以不处理事件
+事件管理的逻辑更复杂
+
+
+六、BOM
+浏览器窗口对象的API
+1、navigate
+platform/userAgent
+2、location
+protocol,port,host,hostname,path,search
+方法：
+assign(url)
+replace(url)
+reload()
+3、history
+back()
+forword()
+go()
+4、screen
+
+方法：
+alert("xxx")/comfirm("xxxx")/prompt("xxxx")
+window.open(url,title,parm)
+window.close();
+
+事件：
+load/unload/beforeunload/resize/scroll
+
+
+七、数据通讯
+1、http协议
+头行、请求头/相应头、请求体/相应体
+常见状态码：
+200 请求成功。一般用于GET或POST方法 OK
+301 资源移动。所请求的资源自动到新的URL，浏览器自动跳转到新的URL Moved Permanently
+304 未修改。所请求的资源为修改，浏览器读取缓存数据 Not Modified
+400 请求语法错误，服务器无法理解 Bad Request
+404 未找到资源，可以设置个性"404页面" Not Found
+500 服务器内部错误 Internal Server Error
+
+2、Ajax Asychronous JavaScript And XML
+ajax通信流程：
+XHR-->open()-->send()
+readyState:0,1,2,3,4
+onreadystatechange onload
+同源策略
+两个页面拥有相同的协议、端口、主机
+
+跨域资源访问
+CORS标准
+JSONP
+Comet
+Web Sockets
+
+八、数据存储
+1、cookie
+流量代价、安全性问题
+
+2、localStorage sessionStorage
+
+
+九、动画
+对象的属性随时间的变化而变化
+setInterval, setTimeout, requestAnimationFrame()
+1、实现方式
+git/flash/css3/js
+2、方法:异步方法
+setInterval(func,delay[,parms1,parms2,..]) delay:触发定时器的事件间隔
+clearInterval(id)
+
+setTimeout(func,[delay,params1,...])
+claarTimeout(id)
+
+requestAnimationFrame(func) 间隔时间由显示器的刷新频率控制
+cancelAnimationFrame(id)
+
+十、音频与视频
+<audio src="xxx">
+<video src="xxx" width=100 heigth=111>
+
+types属性：兼容用法
+
+十一、canvas
+
+十二、表单操作
+1、表单元素
+fieldset legend ....
+form:
+属性：
+noValidate/target/method/acceptCharset/action/enctype/encoding
+name:document.forms.name
+autocomplete:是否开启自动补全，针对输入框
+API：
+elements:动态的节点集合
+该表单的子孙表单控件（图片按钮除外）、归属于该表单的表单控件（图片按钮除外）
+length:=elements.length
+reset():
+input/keygen/output/select/textarea
+如果取消了该控件的默认行为，则重置无效
+元素重置时不再触发元素的
+submit()
+checkValidity()
+
+2、表单验证
+willValidate/checkValidity()/validity/validationMessage/setCustomValidity(message)
+自定义异常：oninvalid：这个事件验证失败时发生/setCustomValidity("xxx")
+form的novalidate属性设置不验证
+
+3、表单提交
+隐式提交：
+①、表单有非禁用的提交按钮
+②、如果没有提交按钮，不超过一个类型为text/search/url/email/password/date/time/number的input元素
+提交过程：
+①、根据表单enctype指定的值构建要提交的数据结构
+②、将数据发送到action的指定地址
+
+特殊案例：
+name="isIndex" type="text"
+name="_charset_" type="hidden"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
