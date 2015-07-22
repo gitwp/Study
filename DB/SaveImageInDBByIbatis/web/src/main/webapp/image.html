@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="imageApp">
+<head>
+<meta charset="UTF-8">
+<title>iframe代理</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/imageCtrl.js"></script>
+<style type="text/css">
+* {
+	border: 0;
+}
+
+img {
+	height: 100px;
+	width: 100px;
+}
+</style>
+</head>
+<body ng-controller="imageCtrl">
+	<h1>异步文件上传例子</h1>
+	<img id="loading" src="loading.gif" style="display: none;">
+	<form name="form" action="" method="POST" enctype="multipart/form-data">
+		<input id="fileToUpload" type="file" size="45" name="file">
+		<button class="button" ng-click="ajaxFileUpload();">上传</button>
+	</form>
+	<div >
+		<p>
+			<label>图片编号</label><input type="text" ng-model="pagingQuery.id"
+				maxlength=80 style="width: 160px;border:1px solid black;" />
+		</p>
+		<button ng-click="queryList()">查询</button>
+		<table>
+			<caption>图片列表</caption>
+			<thead>
+				<th>图片编号</th>
+				<th>图片名称</th>
+				<th>图片信息</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in imagelist">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td><img ng-src="action/image?id={{item.id}}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="upload.html">新增图片</a>
+	</div>
+</body>
+</html>

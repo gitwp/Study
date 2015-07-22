@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dao.TbImageDao">
+
+	<insert id="insert" parameterType="TbImage">
+		insert into TB_IMAGE
+		(
+		Id,
+		IMAGE,
+		Name
+		)
+		values(
+		SEQ_TB_IMAGE.Nextval,
+		#{images},
+		#{name}
+		)
+	</insert>
+
+	<select id="queryImage" parameterType="java.lang.String"
+		resultType="TbImage">
+		select id,name,IMAGE
+		from TB_IMAGE
+		where id=#{id}
+	</select>
+	
+	<select id="queryList" parameterType="TbImage"
+		resultType="TbImage">
+		select id,name
+		from TB_IMAGE
+		where 1=1
+		<if test="null != id and id !=''">
+			AND id=#{id}
+		</if>
+	</select>
+
+	<select id="queryImage2" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select id,name,IMAGE
+		from TB_IMAGE
+		where id=#{id}
+	</select>
+</mapper>
