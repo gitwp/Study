@@ -4,8 +4,12 @@
 ①、浅拷贝：是指拷贝引用，实际内容并没有复制，改变后者等于改变前者。
 ②、深拷贝：拷贝出来的东西和被拷贝者完全独立，相互没有影响。
 ③、
-java语言提供Cloneable接口，在运行时通知虚拟机可以安全的在这个类上使用clone（）方法，通过这个方法可以复制一个对象，但是Object并没有实现这个接口，所以在拷贝是必须实现此标识接口，否则会抛出CloneNotSupportedException。
-但是clone（）方法出来的默认都是浅拷贝，如果要深拷贝，那么可以考虑自己编写clone方法，但是深度很难控制，编写这个clone方法也不是最佳方案，还有个比较好的方案就是串行化来实现，代码如下：
+java语言提供Cloneable接口，在运行时通知虚拟机可以安全的在这个类上使用clone（）方法，
+通过这个方法可以复制一个对象，但是Object并没有实现这个接口，所以在拷贝是必须实现此标识接口，
+否则会抛出CloneNotSupportedException。
+
+但是clone（）方法出来的默认都是浅拷贝，如果要深拷贝，那么可以考虑自己编写clone方法，但是深度很难控制，
+编写这个clone方法也不是最佳方案，还有个比较好的方案就是串行化来实现，代码如下：
 Java代码  收藏代码
 public Object deepClone(){  
     ByteArrayOutputStream bos = new ByteArrayOutputStream();   
@@ -16,3 +20,14 @@ public Object deepClone(){
     return ois.readObject();  
 }  
 这样就可以实现深拷贝，前提是对象实现java.io.Serializable接口。
+
+克隆满足的条件
+　　clone()方法将对象复制了一份并返还给调用者。所谓“复制”的含义与clone()方法是怎么实现的。一般而言，clone()方法满足以下的描述：
+
+　　（1）对任何的对象x，都有：x.clone()!=x。换言之，克隆对象与原对象不是同一个对象。
+
+　　（2）对任何的对象x，都有：x.clone().getClass() == x.getClass()，换言之，克隆对象与原对象的类型一样。
+
+　　（3）如果对象x的equals()方法定义其恰当的话，那么x.clone().equals(x)应当成立的。
+
+在JAVA语言的API中，凡是提供了clone()方法的类，都满足上面的这些条件。一般来说，上面的三个条件中的前两个是必需的，而第三个是可选的。
