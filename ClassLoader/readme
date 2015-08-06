@@ -1,0 +1,31 @@
+类装载器ClassLoader
+一、作用
+	类装载器的作用是寻找类的字节码文件并构造出类在JVM内部表示对象的组件。
+
+二、类装载步骤
+1、装载：查找并导入Class文件
+2、链接：执行校验、准备和解析步骤，其中解析步骤是可选的
+	①、校验：检查载入Class文件数据的正确性
+	②、准备：给类的静态变量分配存储空间
+	③、解析：将符号引用转成直接引用
+3、初始化：对类的静态变量、静态代码块执行初始化工作
+
+	类装载工作由ClassLoader及其子类负责，ClassLoader是一个重要的Java运行时系统组件，它负责在运行时查找和装入Class
+字节码文件。JVM在运行时会产生三个ClassLoader:根装载器、ExtClassLoader(扩展类装载器)、AppClassLoader(系统类装载器)
+其中根装载器不是ClassLoader的子类，它使用C++编写，负责装载JRE的核心类库（rt.jar、charset.jar等）。ExtClassLoader
+和AppClassLoader都是ClassLoader的子类。其中ExtClassLoader负责装载JRE扩展目录ext中的JAR类包，AppClassLoader负责装载
+ClassPath路径下的类包。
+
+	跟装载器是ExtClassLoader的父装载器；ExtClassLoader是AppClassLoader的父装载器。默认使用AppClassLoader装载应用程序的类。
+	
+
+
+
+
+
+
+
+
+
+
+
