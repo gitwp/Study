@@ -1,0 +1,7 @@
+1、Spring的事件机制是典型的观察者模式的实践
+
+2、Spring事件相关接口
+	事件接口：ApplicationEvent；容器事件：ApplicationContextEvent;Web相关事件RequestHandleEvent
+	事件广播器接口：ApplicationEventMulticaster；
+	事件监听器接口：ApplicationListener;
+	Spring会委托事件广播器将事件通知给事件监听器
