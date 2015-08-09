@@ -22,3 +22,4 @@
 		wait()：当前线程进入对象的wait pool
 		notify()/notifyAll():唤醒对象的wait pool中的一个/所有等待线程
 		Thread.currentThread():获取当前线程
+		
