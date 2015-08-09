@@ -1,0 +1,24 @@
+线程
+1、定义
+	线程是一个对象，它代表程序内部的一种执行路径。
+	Thread类实现了Runnable接口，Thread类的直接子类ForkJoinWorkerThread。
+	
+2、基本用法
+	①、新建线程：新建一个类继承Thread类；新建一个类实现Runnable接口。
+	②、启动线程：调用线程的start()方法。
+	③、线程状态转换
+							←←←←← 阻塞状态 ←←←←	
+							↓					↑
+						阻塞解除			导致阻塞的事件
+							↓					↑
+		创建-->start()-->就绪状态--CUP调度-->运行状态------>终止
+	④、线程控制的基本方法
+		isAlive():判断线程是否还“活”（就绪、运行、阻塞）着，即线程是否还未终止
+		getPriority()：获取线程的优先级
+		setPriority()：设置线程的优先级，1~10,默认是5
+		Thread.sleep()：当前线程休眠指定的毫秒数，休眠期间被打断(interrupt方法)会抛出异常
+		jion():调用某线程的该方法，将当前线程与该线程合并，即等待该线程结束再继续执行当前线程
+		yield()：让出CPU，当前线程进入就绪队列等待调度
+		wait()：当前线程进入对象的wait pool
+		notify()/notifyAll():唤醒对象的wait pool中的一个/所有等待线程
+		Thread.currentThread():获取当前线程
