@@ -1,0 +1,12 @@
+1、概念：
+	①、i18n（其来源是英文单词 internationalization的首末字符i和n，18为中间的字符数）是“国际化”的简称;
+	②、i18n问题可以简单描述为：为每一种需要支持的语言提供一套相应的资源文件（界面信息，报错信息，提示信息等）,
+并以规范化命名的方式保存在特定的目录中，由系统自动根据客户端语言选择适合的资源文件;
+	③、国际化信息由:语言类型(ISO-639)+国家地区类型(ISO-3166)决定
+	④、资源文件命名方式：资源名_语言代码_国家/地区代码.properties。其中语言代码，国家/地区代码是可选的，资源名.properties命名的资源文件时默认的资源文件
+	⑤、ASCII字符转Unicode工具：native2ascii
+	
+2、Spring中的对资源文件的管理
+	①、MessageSource接口,重要的实现类：ResourceBundleMessageSource,ReloadableResourceBundleMessageSource(提供定时刷新功能)。都是基于Java的
+ResourceBundle基础类实现。
+	②、ApplicationContext继承MessageSource，可以通过ApplicationContext的实现类直接访问资源信息。
