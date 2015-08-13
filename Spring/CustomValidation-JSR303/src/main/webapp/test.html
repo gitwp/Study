@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<script type='text/javascript' src='js/angular.min.js'></script>
+<script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+<script type='text/javascript' src='js/testCtrl.js'></script>
+</head>
+<body ng-controller="testCtrl">
+	<form>
+		<label for="username"/> 用户名 </label>
+		<input id="username" name="username" ng-model="formField.username" />不能为空 <br>
+			<label for="password">密码 </label>
+			<input id="password" name="password" ng-model="formField.password" />不能为空<br>
+			<label for="status">状态 </label>
+			<input id="status" name="status" ng-model="formField.status" />值只能是1或2<br>
+			<label for="phone">电话 </label>
+			<input id="phone" name="phone" ng-model="formField.phone" />自定义电话号码验证
+		<button ng-click="test()">提交</button>
+	</form>
+</body>
+</html>
