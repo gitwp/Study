@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<property name="log.base" value="d:/logs/logback/" />
+	<property name="pattern"
+		value="%date [%thread] %-5level %logger{80} - %msg%n" />
+		
+	<!-- Console日志输出位置与样式 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${pattern}</pattern>
+		</layout>
+	</appender>
+
+	<!-- 顶级日志 -->
+	<root>
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>
