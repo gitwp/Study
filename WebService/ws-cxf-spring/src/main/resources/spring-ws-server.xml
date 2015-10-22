@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<description>CXF服务配置</description>
+	
+	<!-- 投标端点定义 -->
+	<!-- http://localhost:8080/ws/services/userService?wsdl -->
+	<jaxws:endpoint name="userServiceEndpoint" address="/userService" >
+		<jaxws:implementor ref="userServices" />
+	</jaxws:endpoint>
+
+	<bean id="userServices" class="com.ws.services.impl.UserServicesImpl"/>
+	
+	
+</beans>
