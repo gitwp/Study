@@ -1,0 +1,3 @@
+	CacheManager是Spring定义的一个用来管理Cache的接口。
+	Spring自身已经为我们提供了两种CacheManager的实现，一种是基于Java API的ConcurrentMap，另一种是基于第三方Cache实现——Ehcache，
+如果我们需要使用其它类型的缓存时，我们可以自己来实现Spring的CacheManager接口或AbstractCacheManager抽象类。
